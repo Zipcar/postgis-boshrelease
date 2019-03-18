@@ -1,0 +1,15 @@
+set -e -x
+
+echo "sfcgal Installation"
+
+echo "Extracting..."
+tar xvf sfcgal/SFCGAL-1.3.6.tar.gz
+
+echo "Building..."
+pushd SFCGAL-* > /dev/null
+BOOST_ROOT=/var/vcap/packages/boost CGAL_DIR=/var/vcap/packages/cgal GMP_DIR=/var/vcap/packages/gmp MPFR_INC_DIR=/var/vcap/packages/mpfr/include MPFR_LIB_DIR=/var/vcap/packages/mpfr/lib cmake -DCMAKE_INSTALL_PREFIX=/var/vcap/packages/sfcgal -DCMAKE_BUILD_TYPE=Release  .
+make
+make install
+popd > /dev/null
+
+echo "Complete"

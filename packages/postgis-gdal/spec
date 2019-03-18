@@ -1,4 +1,0 @@
----
-name: postgis-gdal
-files:
-  - postgis-gdal/gdal-2.4.0.tar.gz

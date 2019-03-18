@@ -1,6 +1,0 @@
----
-name: postgis-mpfr
-files:
-  - postgis-mpfr/mpfr-4.0.2.tar.gz
-dependencies:
-  - postgis-gmp

@@ -7,11 +7,11 @@ pushd postgis-2.5.2 > /dev/null
 ./configure \
 --prefix=${BOSH_INSTALL_TARGET} \
 --with-pgconfig=/var/vcap/packages/postgres-10.7/bin/pg_config \
---with-geosconfig=/var/vcap/packages/postgis-geos/bin/geos-config \
---with-projdir=/var/vcap/packages/postgis-proj \
---with-gdalconfig=/var/vcap/packages/postgis-gdal/bin/gdal-config \
---with-sfcgal=/var/vcap/packages/postgis-sfcgal/bin/sfcgal-config \
---with-pcredir=/var/vcap/packages/postgis-pcre
+--with-geosconfig=/var/vcap/packages/geos/bin/geos-config \
+--with-projdir=/var/vcap/packages/proj \
+--with-gdalconfig=/var/vcap/packages/gdal/bin/gdal-config \
+--with-sfcgal=/var/vcap/packages/sfcgal/bin/sfcgal-config \
+--with-pcredir=/var/vcap/packages/pcre
 make
 make install
 ldconfig

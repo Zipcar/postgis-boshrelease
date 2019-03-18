@@ -1,0 +1,4 @@
+---
+name: boost
+files:
+  - boost/boost_1_67_0.tar.gz

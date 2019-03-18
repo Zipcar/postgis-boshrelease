@@ -1,0 +1,6 @@
+---
+name: proj
+files:
+  - proj/sqlite-autoconf-3270200.tar.gz 
+  - proj/proj-5.2.0.tar.gz
+  - proj/proj-datumgrid-1.8.zip

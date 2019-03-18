@@ -1,4 +1,0 @@
----
-name: postgis-jsonc
-files:
-  - postgis-jsonc/json-c-json-c-0.13.1-20180305.tar.gz

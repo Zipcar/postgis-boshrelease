@@ -1,0 +1,16 @@
+set -e -x
+
+echo "libxml2 Installation"
+
+echo "Extracting..."
+tar xvf libxml2/libxml2-sources-2.9.9.tar.gz
+
+echo "Building..."
+pushd libxml2-* > /dev/null
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Complete"

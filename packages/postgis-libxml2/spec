@@ -1,4 +1,0 @@
----
-name: postgis-libxml2
-files:
-  - postgis-libxml2/libxml2-sources-2.9.9.tar.gz

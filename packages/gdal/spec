@@ -1,0 +1,4 @@
+---
+name: gdal
+files:
+  - gdal/gdal-2.4.0.tar.gz

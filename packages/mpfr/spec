@@ -1,0 +1,6 @@
+---
+name: mpfr
+files:
+  - mpfr/mpfr-4.0.2.tar.gz
+dependencies:
+  - gmp
