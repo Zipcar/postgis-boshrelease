@@ -1,0 +1,8 @@
+---
+name: postgis-cgal
+files:
+  - postgis-cgal/cgal-releases-CGAL-4.13.tar.gz
+dependencies:
+  - postgis-boost
+  - postgis-mpfr  
+  - postgis-gmp

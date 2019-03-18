@@ -1,0 +1,26 @@
+set -e -x
+
+echo "SQLite installation" 
+tar xvf postgis-proj/sqlite-autoconf-3270200.tar.gz 
+pushd sqlite-* > /dev/null
+./configure
+make
+make install
+popd > /dev/null
+
+echo "Proj Installation"
+
+echo "Extracting..."
+tar xvf postgis-proj/proj-5.2.0.tar.gz 
+unzip -o postgis-proj/proj-datumgrid-1.8.zip -d proj-5.2.0/data
+
+echo "Building..."
+pushd proj-* > /dev/null
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make
+make install
+ldconfig
+popd > /dev/null
+
+
+echo "Proj Complete"

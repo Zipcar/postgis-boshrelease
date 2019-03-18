@@ -1,0 +1,16 @@
+<% p("databases.roles", []).each do |role| %>
+DO
+$body$
+BEGIN
+   IF NOT EXISTS (SELECT FROM pg_catalog.pg_user WHERE usename = '<%= role["name"] %>') THEN
+      CREATE ROLE "<%= role["name"] %>" WITH LOGIN;
+   END IF;
+END
+$body$;
+  <% if role["password"] %>
+ALTER ROLE "<%= role["name"] %>" WITH LOGIN PASSWORD '<%= role["password"] %>';
+  <% end %>
+  <% if role["permissions"] %>
+ALTER ROLE "<%= role["name"] %>" WITH <%= role["permissions"].join(' ') %>;
+  <% end %>
+<% end %>

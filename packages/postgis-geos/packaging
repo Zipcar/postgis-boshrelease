@@ -1,0 +1,16 @@
+set -e -x
+
+echo "Geos Installation"
+
+echo "Extracting..."
+tar xjf postgis-geos/geos-*.tar.bz2 
+
+echo "Building..."
+pushd geos-* > /dev/null
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Geos Complete"

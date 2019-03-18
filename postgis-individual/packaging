@@ -1,0 +1,24 @@
+set -e -x
+echo "Postgis"
+
+tar xvf postgis/postgis-2.5.2.tar.gz
+
+pushd postgis-2.5.2 > /dev/null
+./configure \
+--prefix=${BOSH_INSTALL_TARGET} \
+--with-pgconfig=/var/vcap/packages/postgres-10.7/bin/pg_config \
+--with-geosconfig=/var/vcap/packages/postgis-geos/bin/geos-config \
+--with-projdir=/var/vcap/packages/postgis-proj \
+--with-gdalconfig=/var/vcap/packages/postgis-gdal/bin/gdal-config \
+--with-sfcgal=/var/vcap/packages/postgis-sfcgal/bin/sfcgal-config \
+--with-pcredir=/var/vcap/packages/postgis-pcre
+make
+make install
+ldconfig
+
+mkdir -p ${BOSH_INSTALL_TARGET}/postgres-10.7-compiled
+cp -r /var/vcap/packages/postgres-10.7/* ${BOSH_INSTALL_TARGET}/postgres-10.7-compiled/
+
+popd > /dev/null
+
+echo "Complete"

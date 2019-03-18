@@ -1,0 +1,9 @@
+---
+name: postgis-sfcgal
+files:
+  - postgis-sfcgal/SFCGAL-1.3.6.tar.gz
+dependencies:
+  - postgis-cgal
+  - postgis-boost
+  - postgis-mpfr  
+  - postgis-gmp

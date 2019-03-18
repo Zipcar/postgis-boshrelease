@@ -1,0 +1,17 @@
+---
+name: postgis
+files:
+  - postgis/postgis-2.5.2.tar.gz
+dependencies:
+  - postgis-gdal
+  - postgis-geos
+  - postgis-jsonc
+  - postgis-libxml2
+  - postgis-proj
+  - postgis-sfcgal
+  - postgis-cgal
+  - postgis-boost
+  - postgis-mpfr  
+  - postgis-gmp
+  - postgis-pcre
+  - postgres-10.7

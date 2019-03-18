@@ -1,0 +1,4 @@
+---
+name: postgis-gmp
+files:
+  - postgis-gmp/gmp-6.1.2.tar.bz2

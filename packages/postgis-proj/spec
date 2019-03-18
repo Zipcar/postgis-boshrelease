@@ -1,0 +1,6 @@
+---
+name: postgis-proj
+files:
+  - postgis-proj/sqlite-autoconf-3270200.tar.gz 
+  - postgis-proj/proj-5.2.0.tar.gz
+  - postgis-proj/proj-datumgrid-1.8.zip

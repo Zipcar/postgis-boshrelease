@@ -1,0 +1,217 @@
+set -e -x
+
+install_dir=${BOSH_INSTALL_TARGET}/geos
+mkdir -p ${install_dir}
+echo "Geos Installation"
+
+echo "Extracting..."
+tar xjf postgis-geos/geos-*.tar.bz2 
+
+echo "Building..."
+pushd geos-* > /dev/null
+./configure --prefix=${install_dir}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Geos Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/gdal
+mkdir -p ${install_dir}
+
+echo "Extracting..."
+tar xvf postgis-gdal/gdal-2.4.0.tar.gz
+
+echo "Building..."
+pushd gdal-* > /dev/null
+./configure --prefix=${install_dir}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/libxml2
+mkdir -p ${install_dir}
+echo "libxml2 Installation"
+
+echo "Extracting..."
+tar xvf postgis-libxml2/libxml2-sources-2.9.9.tar.gz
+
+echo "Building..."
+pushd libxml2-* > /dev/null
+./configure --prefix=${install_dir}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/jsonc
+mkdir -p ${install_dir}
+echo "json-c Installation"
+
+echo "Extracting..."
+tar xvf postgis-jsonc/json-c-json-c-0.13.1-20180305.tar.gz
+
+echo "Building..."
+pushd json-c-* > /dev/null
+./configure --prefix=${install_dir}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Complete"
+
+echo "SQLite installation" 
+tar xvf postgis-proj/sqlite-autoconf-3270200.tar.gz 
+pushd sqlite-* > /dev/null
+./configure
+make
+make install
+popd > /dev/null
+
+install_dir=${BOSH_INSTALL_TARGET}/proj
+mkdir -p ${install_dir}
+echo "Proj Installation"
+
+echo "Extracting..."
+tar xvf postgis-proj/proj-5.2.0.tar.gz 
+unzip -o postgis-proj/proj-datumgrid-1.8.zip -d proj-5.2.0/data
+
+echo "Building..."
+pushd proj-* > /dev/null
+./configure --prefix=${install_dir}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/boost
+mkdir -p ${install_dir}
+echo "boost Installation"
+
+echo "Extracting..."
+tar xvf postgis-boost/boost_1_67_0.tar.gz
+
+echo "Building..."
+pushd boost_* > /dev/null
+./bootstrap.sh --prefix=${install_dir}
+./b2 install
+
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/gmp
+mkdir -p ${install_dir}
+echo "gmp Installation"
+
+echo "Extracting..."
+tar xjf postgis-gmp/gmp-6.1.2.tar.bz2
+
+echo "Building..."
+pushd gmp-* > /dev/null
+
+./configure --prefix=${install_dir}
+make
+make check
+make install
+
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/mpfr
+mkdir -p ${install_dir}
+echo "mpfr Installation to $install_dir"
+
+echo "Extracting..."
+tar xvf postgis-mpfr/mpfr-4.0.2.tar.gz
+
+echo "Building..."
+pushd mpfr-* > /dev/null
+./configure --prefix=${install_dir} --with-gmp=${BOSH_INSTALL_TARGET}/gmp
+make
+make install
+
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/cgal
+mkdir -p ${install_dir}
+echo "cgal Installation"
+
+echo "Extracting..."
+tar xvf postgis-cgal/cgal-releases-CGAL-4.13.tar.gz
+
+echo "Building..."
+pushd cgal-releases-CGAL-* > /dev/null
+BOOST_ROOT=${BOSH_INSTALL_TARGET}/boost GMP_DIR=${BOSH_INSTALL_TARGET}/gmp MPFR_INC_DIR=${BOSH_INSTALL_TARGET}/mpfr/include MPFR_LIB_DIR=${BOSH_INSTALL_TARGET}/mpfr/lib cmake -DCMAKE_INSTALL_PREFIX=${install_dir} -DCMAKE_BUILD_TYPE=Release .
+make install
+
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/sfcgal
+mkdir -p ${install_dir}
+echo "sfcgal Installation"
+
+echo "Extracting..."
+tar xvf postgis-sfcgal/SFCGAL-1.3.6.tar.gz
+
+echo "Building..."
+pushd SFCGAL-* > /dev/null
+BOOST_ROOT=${BOSH_INSTALL_TARGET}/boost CGAL_DIR=${BOSH_INSTALL_TARGET}/cgal GMP_DIR=${BOSH_INSTALL_TARGET}/gmp MPFR_INC_DIR=${BOSH_INSTALL_TARGET}/mpfr/include MPFR_LIB_DIR=${BOSH_INSTALL_TARGET}/mpfr/lib cmake -DCMAKE_INSTALL_PREFIX=${BOSH_INSTALL_TARGET}/sfcgal${install_dir} -DCMAKE_BUILD_TYPE=Release  .
+make
+make install
+popd > /dev/null
+
+echo "Complete"
+
+install_dir=${BOSH_INSTALL_TARGET}/pcre
+mkdir -p ${install_dir}
+echo "pcre Installation"
+
+echo "Extracting..."
+tar xvf postgis/pcre-8.42.tar.gz
+
+echo "Building..."
+pushd pcre-* > /dev/null
+
+./configure --prefix=${install_dir}
+make
+make install
+
+popd > /dev/null
+
+echo "Complete"
+
+echo "postgis Installation"
+
+echo "Extracting..."
+  tar xvf postgis/postgis-2.5.2.tar.gz
+
+  pushd postgis-* > /dev/null
+    ./configure \
+    --prefix=${BOSH_INSTALL_TARGET} \
+    --with-pgconfig=/var/vcap/packages/postgres-10.7/bin/pg_config \
+    --with-geosconfig=${BOSH_INSTALL_TARGET}/geos/bin/geos-config \
+    --with-projdir=${BOSH_INSTALL_TARGET}/proj \
+    --with-gdalconfig=${BOSH_INSTALL_TARGET}/gdal/bin/gdal-config \
+    --with-sfcgal=${BOSH_INSTALL_TARGET}/sfcgal/bin/sfcgal-config \
+    --with-pcredir=${BOSH_INSTALL_TARGET}/pcre
+    make
+    make install
+    ldconfig
+  popd > /dev/null
+
+echo "Complete"

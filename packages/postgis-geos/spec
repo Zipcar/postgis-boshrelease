@@ -1,0 +1,4 @@
+---
+name: postgis-geos
+files:
+  - postgis-geos/geos-3.7.1.tar.bz2

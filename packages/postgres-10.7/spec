@@ -1,0 +1,4 @@
+---
+name: postgres-10.7
+files:
+  - postgres/postgresql-10.7.tar.gz

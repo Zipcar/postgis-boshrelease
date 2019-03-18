@@ -1,0 +1,16 @@
+set -e -x
+
+echo "json-c Installation"
+
+echo "Extracting..."
+tar xvf postgis-jsonc/json-c-json-c-0.13.1-20180305.tar.gz
+
+echo "Building..."
+pushd json-c-* > /dev/null
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make
+make install
+ldconfig
+popd > /dev/null
+
+echo "Complete"

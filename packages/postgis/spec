@@ -1,0 +1,17 @@
+---
+name: postgis
+files:
+  - postgis-geos/geos-3.7.1.tar.bz2
+  - postgis-gdal/gdal-2.4.0.tar.gz
+  - postgis-libxml2/libxml2-sources-2.9.9.tar.gz
+  - postgis-jsonc/json-c-json-c-0.13.1-20180305.tar.gz
+  - postgis-proj/sqlite-autoconf-3270200.tar.gz 
+  - postgis-proj/proj-5.2.0.tar.gz
+  - postgis-proj/proj-datumgrid-1.8.zip 
+  - postgis-boost/boost_1_67_0.tar.gz
+  - postgis-gmp/gmp-6.1.2.tar.bz2
+  - postgis-mpfr/mpfr-4.0.2.tar.gz
+  - postgis-cgal/cgal-releases-CGAL-4.13.tar.gz
+  - postgis-sfcgal/SFCGAL-1.3.6.tar.gz
+  - postgis/pcre-8.42.tar.gz
+  - postgis/postgis-2.5.2.tar.gz

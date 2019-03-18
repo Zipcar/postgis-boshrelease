@@ -1,0 +1,38 @@
+---
+name: bbr-postgres-db
+
+description: "This sample job must be collocated with the postgres job since leverages local db connections."
+
+templates:
+  config.sh.erb: config/config.sh
+  backup.sh.erb: bin/bbr/backup
+  restore.sh.erb: bin/bbr/restore
+  pgpass.erb: config/pgpass
+  ca_cert.erb: config/ca_cert
+  client_certificate.erb: config/client_certificate
+  client_certificate_key.erb: config/client_certificate_key
+
+packages:
+  - postgres-common
+  - postgres-10.7
+
+consumes:
+- name: database
+  type: database
+
+properties:
+  release_level_backup:
+    default: false
+    description: "Include postgres in backup and restore operations"
+  postgres.dbuser:
+    default: vcap
+    description: "Database user to run backup and restore"
+  postgres.ssl_verify_hostname:
+    default: true
+    description: "If postgres is configured with a ca, setting this to 'true' changes sslmode to 'verify-full' rather than 'verify-ca'."
+  postgres.client_certificate:
+    default: ''
+    description: "Client certificate. Specify it if you want to auhtenticate using certificates."
+  postgres.client_certificate_key:
+    default: ''
+    description: "Secret key used for the client certificate. Specify it if you want to auhtenticate using certificates."

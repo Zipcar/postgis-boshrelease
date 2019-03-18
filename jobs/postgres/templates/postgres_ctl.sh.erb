@@ -1,0 +1,79 @@
+#!/bin/bash -eu
+
+export PIDNUM=$$
+
+exec > >(tee -a >(logger -p user.info -t vcap.$(basename $0).stdout) | awk -W interactive '{ system("echo -n [$(date +\"%Y-%m-%d %H:%M:%S%z\")] $PIDNUM"); print " " $0 }' >> /var/vcap/sys/log/postgres/$(basename $0).log)
+exec 2> >(tee -a >(logger -p user.error -t vcap.$(basename $0).stderr) | awk -W interactive '{ system("echo -n [$(date +\"%Y-%m-%d %H:%M:%S%z\")] $PIDNUM"); print " " $0 }' >> /var/vcap/sys/log/postgres/$(basename $0).err.log)
+
+function main() {
+  local action
+  action="${1}"
+
+  source /var/vcap/jobs/postgres/bin/pgconfig.sh
+  set +u
+  source /var/vcap/packages/postgres-common/utils.sh
+  set -u
+
+  case "${action}" in
+    "start")
+      mkdir -p "${RUN_DIR}"
+
+      pid_guard "${CONTROL_JOB_PIDFILE}" "Postgres control job" "false"
+      echo $$ > ${CONTROL_JOB_PIDFILE}
+
+      if [ -d $DATA_DIR -a -f $POSTGRES_UPGRADE_LOCK ]; then
+        echo "FAIL: DB upgrade to ${pgversion_current} stopped in the middle, manual intervention required, quitting..."
+        exit 1
+      fi
+
+      if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
+        set +e
+        "${PACKAGE_DIR}/bin/pg_ctl" stop -m fast -w -D ${DATA_DIR}
+        "${PACKAGE_DIR_OLD}/bin/pg_ctl" stop -m fast -w -D ${DATA_DIR_OLD}
+        set -e
+      fi
+
+      pid_guard "${PIDFILE}" "PostgreSQL"
+
+      echo "" > "${PIDFILE}"
+
+      exec "${JOB_DIR}/bin/postgres_start.sh"
+
+      echo "" > "${CONTROL_JOB_PIDFILE}"
+      ;;
+
+    "stop")
+      <% unless p("databases.hooks.pre_stop").empty? %>
+        ${JOB_DIR}/bin/hooks/call-hooks.sh "pre-stop"
+      <% end %>
+      echo "Stopping PostgreSQL: "
+
+      if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
+        set +e
+         su - vcap -c "${PACKAGE_DIR_OLD}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR_OLD}"
+        set -e
+      fi
+
+      set +e
+      su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
+      set -e
+
+      set +u
+      wait_pidfile "${PIDFILE}"
+      set -u
+
+      <% unless p("databases.hooks.post_stop").empty? %>
+      ${JOB_DIR}/bin/hooks/call-hooks.sh "post-stop"
+      <% end %>
+      ;;
+
+    *)
+      echo "Usage: ${0} {start|stop|status}"
+      exit 1
+
+      ;;
+
+  esac
+}
+
+main "${1}"
