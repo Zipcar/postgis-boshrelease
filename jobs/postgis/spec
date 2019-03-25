@@ -1,0 +1,10 @@
+---
+name: postgis
+
+description: "Installs the postgis extension by copying over the relevant control files into the postgres install as a pre-start job."
+
+templates:
+  pre-start.sh.erb: bin/pre-start
+
+packages:
+  - postgis

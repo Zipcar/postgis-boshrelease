@@ -1,0 +1,10 @@
+#!/bin/bash -eu
+
+export PIDNUM=$$
+
+exec > >(tee -a >(logger -p user.info -t vcap.$(basename $0).stdout) | awk -W interactive '{ system("echo -n [$(date +\"%Y-%m-%d %H:%M:%S%z\")] $PIDNUM"); print " " $0 }' >> /var/vcap/sys/log/postgis/pre-start.stdout.log)
+exec 2> >(tee -a >(logger -p user.error -t vcap.$(basename $0).stderr) | awk -W interactive '{ system("echo -n [$(date +\"%Y-%m-%d %H:%M:%S%z\")] $PIDNUM"); print " " $0 }' >> /var/vcap/sys/log/postgis/pre-start.stderr.log)
+
+for postgres_version in $(ls /var/vcap/packages/ | grep postgres-*[0-9]); do
+  cp -rn /var/vcap/packages/postgis/${postgres_version}/* /var/vcap/packages/${postgres_version}
+done

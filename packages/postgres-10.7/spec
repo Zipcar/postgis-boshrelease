@@ -1,0 +1,19 @@
+---
+name: postgres-10.7
+files:
+  - postgres/postgresql-10.7.tar.gz
+  - postgis/postgis-2.5.2.tar.gz
+dependencies:
+  - gdal
+  - geos
+  - jsonc
+  - libxml2
+  - proj
+  - sfcgal
+  - cgal
+  - boost
+  - mpfr  
+  - gmp
+  - pcre
+  - postgres-9.6.10
+  - postgres-10.7
