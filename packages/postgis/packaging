@@ -1,24 +1,13 @@
+#!/bin/bash -exu
+
 set -e -x
 echo "Postgis"
 
-tar xvf postgis/postgis-2.5.2.tar.gz
+for postgres_source_folder in $(find /var/vcap/packages/postgre* -name postgres-\*\.\*); do
+    postgis_target_folder=$(echo ${postgres_source_folder} | sed 's/packages/packages\/postgis/')
+    mkdir -p $postgis_target_folder
 
-pushd postgis-2.5.2 > /dev/null
-./configure \
---prefix=${BOSH_INSTALL_TARGET} \
---with-pgconfig=/var/vcap/packages/postgres-10.7/bin/pg_config \
---with-geosconfig=/var/vcap/packages/geos/bin/geos-config \
---with-projdir=/var/vcap/packages/proj \
---with-gdalconfig=/var/vcap/packages/gdal/bin/gdal-config \
---with-sfcgal=/var/vcap/packages/sfcgal/bin/sfcgal-config \
---with-pcredir=/var/vcap/packages/pcre
-make
-make install
-ldconfig
-
-mkdir -p ${BOSH_INSTALL_TARGET}/postgres-10.7-compiled
-cp -r /var/vcap/packages/postgres-10.7/* ${BOSH_INSTALL_TARGET}/postgres-10.7-compiled/
-
-popd > /dev/null
+    cp -r ${postgres_source_folder}/* ${postgis_target_folder}
+done
 
 echo "Complete"

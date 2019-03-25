@@ -15,5 +15,3 @@ dependencies:
   - mpfr  
   - gmp
   - pcre
-  - postgres-9.6.10
-  - postgres-10.7

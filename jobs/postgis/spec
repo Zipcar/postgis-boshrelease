@@ -5,6 +5,18 @@ description: "Installs the postgis extension by copying over the relevant contro
 
 templates:
   pre-start.sh.erb: bin/pre-start
+  envrc: envrc
 
 packages:
   - postgis
+  - gdal
+  - geos
+  - jsonc
+  - libxml2
+  - proj
+  - sfcgal
+  - cgal
+  - boost
+  - mpfr  
+  - gmp
+  - pcre

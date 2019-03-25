@@ -56,7 +56,7 @@ function compilePostgis {
 
   ./configure \
   --prefix=${BOSH_INSTALL_TARGET} \
-  --with-pgconfig=/var/vcap/packages/bin/pg_config \
+  --with-pgconfig=${BOSH_INSTALL_TARGET}/bin/pg_config \
   --with-geosconfig=/var/vcap/packages/geos/bin/geos-config \
   --with-projdir=/var/vcap/packages/proj \
   --with-gdalconfig=/var/vcap/packages/gdal/bin/gdal-config \

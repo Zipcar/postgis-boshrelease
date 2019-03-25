@@ -1,4 +1,4 @@
-name: postgres
+name: postgis
 
 update:
   canaries: 1
