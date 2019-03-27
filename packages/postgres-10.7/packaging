@@ -50,8 +50,8 @@ function compile() {
 function compilePostgis {
   echo "Postgis"
 
-  tar xvf postgis/postgis-2.5.2.tar.gz
-  pushd postgis-2.5.2 > /dev/null
+  tar xvf postgis/postgis-*.tar.gz
+  pushd postgis-* > /dev/null
 
   ./configure \
   --prefix=${BOSH_INSTALL_TARGET} \

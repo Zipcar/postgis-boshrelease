@@ -53,6 +53,12 @@ postgres/postgresql-9.6.10.tar.gz:
 postgres/postgresql-10.7.tar.gz:
   size: 24749562
   sha: 49e38f01aa7454212b5364638e1e579e4304ed2d
+postgres/postgresql-11.1.tar.gz:
+  size: 28078799
+  sha: 5f3e45d5ad5ec3372474eda83e6441ca885ab2cd
+postgres/postgresql-11.2.tar.gz:
+  size: 25779561
+  sha: c047df58bed5b00058d5eb6bde011beed102521d
 proj/proj-5.2.0.tar.gz:
   size: 1398188
   sha: 09cb68377e9901c0e1b817b58e820118ccb741e6

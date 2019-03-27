@@ -11,7 +11,7 @@ function main() {
 function extract_archive() {
 
   echo "Extracting archive..."
-  tar xzf postgres/postgresql-9.6*
+  tar xzf postgres/postgresql-11.1*
 }
 
 function compile() {
@@ -45,7 +45,6 @@ function compile() {
       make install
     popd > /dev/null
   popd > /dev/null
-
 }
 
 function compilePostgis {
