@@ -145,9 +145,9 @@ need).
 Allowing all users in your database to read the spatial tables:
 
   ```
-  GRANT SELECT ON TABLE public.geometry_columns TO PUBLIC 
-  GRANT SELECT ON TABLE public.spatial_ref_sys TO PUBLIC 
-  GRANT SELECT ON TABLE public.raster_columns TO PUBLIC 
+  GRANT SELECT ON TABLE public.geometry_columns TO PUBLIC
+  GRANT SELECT ON TABLE public.spatial_ref_sys TO PUBLIC
+  GRANT SELECT ON TABLE public.raster_columns TO PUBLIC
   GRANT SELECT ON TABLE public.raster_overviews TO PUBLIC
   ```
 
@@ -157,8 +157,8 @@ in specific schemas. In that case something like this might be preferred:
   ```
   --- using a particular db schema...
   GRANT SELECT ON TABLE geometry_columns TO <your_user>
-  GRANT SELECT ON TABLE spatial_ref_sys TO <your_user> 
-  GRANT SELECT ON TABLE raster_columns TO <your_user> 
+  GRANT SELECT ON TABLE spatial_ref_sys TO <your_user>
+  GRANT SELECT ON TABLE raster_columns TO <your_user>
   GRANT SELECT ON TABLE raster_overviews TO <your_user>
   ```
 
