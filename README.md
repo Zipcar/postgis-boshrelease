@@ -112,7 +112,7 @@ data but does alter the behaviour of postgres itself.
 ## Considerations after a successful deployment
 
 A number of new database tables and objects are available after a successful deployment. To access those you should
-execute the following queries as a db user with sufficient permissions (eg an admin).
+execute the following queries as a db user with sufficient permissions (eg `postgres`).
 
 ### Creating new extensions
 
