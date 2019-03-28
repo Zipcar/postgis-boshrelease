@@ -6,11 +6,10 @@
 * [Summary](#summary)
 * [Supported Postgres Versions](#supported-postgres-versions)
 * [Deploying](#deploying)
-* [Contributing](#contributing)
 * [Considerations before deploying](#considerations-before-deploying)
 * [Considerations after a successful deployment](#considerations-after-a-successful-deployment)
 
-## Summary 
+## Summary
 
 This is a [BOSH](https://www.bosh.io) release for [PostGis](https://postgis.net), which builds on top of the 
 [Postgres release](https://github.com/cloudfoundry/postgres-release).
@@ -20,15 +19,15 @@ spatial functions available to postgres users.
 
 Specifically, it adds the following postgres extensions:
 
-  - postgis
-  - postgis_topology
-  - postgis_sfcgal
-  - fuzzystrmatch
-  - address_standardizer
-  - address_standardizer_data_us
-  - postgis_tiger_geocoder
+  - `postgis`
+  - `postgis_topology`
+  - `postgis_sfcgal`
+  - `fuzzystrmatch`
+  - `address_standardizer`
+  - `address_standardizer_data_us`
+  - `postgis_tiger_geocoder`
 
-## Supported Postgres Versions 
+## Supported Postgres Versions
 
 This release supports the following postgres versions:
 
@@ -37,7 +36,9 @@ This release supports the following postgres versions:
  * postgres 11.1
  * postgres 11.2
 
-Only one postgres version can be active at a time.
+It will pick the version of postgres that was packaged by the postgres-release
+that you deploy alongside this release. Only one postgres version can be
+active at a time.
 
 It is currently tested against the following postgres-releases:
 
@@ -76,7 +77,7 @@ release. You may have generated this using the `generate-deployment-manifest` sc
     ```
     releases:
     - name: postgis
-        version: latest
+      version: latest
     ```
     (be sure to leave the `postgres` release reference intact).
 
@@ -85,39 +86,42 @@ release. You may have generated this using the `generate-deployment-manifest` sc
     The postgis job should be included as an `addon`. Place the following at the end of your deployment manifest:
 
     ```
-    addons:  
+    addons:
     - name: postgis
-        jobs:
-        - name: postgis
+      jobs:
+      - name: postgis
         release: postgis
-    ``` 
-   
+    ```
+
 1. Deploy:
 
    ```
    bosh -d DEPLOYMENT_NAME deploy OUTPUT_MANIFEST_PATH
    ```
 
-## Contributing
-
-This bosh release is open source. PRs/issues/etc welcome.
-
-Contributions that track postgis dependencies (e.g. gdal, postgres-release) most welcome.
-
 ## Considerations before deploying
 
-Make sure to back up any existing postgres data before deploying. This release will not alter any of your existing
-data but does alter the behaviour of postgres itself.
+Make sure to back up any existing postgres data before deploying. This
+release will not alter any of your existing data but does alter the
+behaviour of postgres itself.
 
 ## Considerations after a successful deployment
 
-A number of new database tables and objects are available after a successful deployment. To access those you should
-execute the following queries as a db user with sufficient permissions (eg `postgres`).
+A number of new database tables and extemsopms are available after a successful
+deployment. To access those you should execute the following queries as a db
+user with sufficient permissions (eg `postgres` or `vcap`).
+
+In a future version of this bosh release these steps could be included as
+deployment configuration options. For the time being these are left as
+operator tasks.
 
 ### Creating new extensions
 
-The following extensions are provided by this boshrelease. To enable them run some subset of the following queries
-as a db user with sufficient permissions (eg `postgres`):
+The postgres extensions provided by this release need to be `CREATE`d in
+order for them to be available to database users. Depending on which
+extensions you want to enable, some subset of the following queries will
+need to be executed by a db user with sufficient permissions (e.g.
+`postgres` or `vcap`):
 
   ```
   CREATE EXTENSION IF NOT EXISTS postgis
@@ -138,9 +142,9 @@ You may encounter an error like this:
   spatial_ref_system relation does not exist
   ```
 
-This may be because the db user does not have access to the `spatial_ref_sys` table that postgis provides. You
-can grant access as follows (note that this also grants access to several other tables that your users probably
-need).
+This may be because the db user does not have access to the `spatial_ref_sys`
+table that postgis provides. You can grant access as follows (note that this
+also grants access to several other tables that your users probably need).
 
 Allowing all users in your database to read the spatial tables:
 
@@ -151,8 +155,9 @@ Allowing all users in your database to read the spatial tables:
   GRANT SELECT ON TABLE public.raster_overviews TO PUBLIC
   ```
 
-You may prefer a more restricted model whereby you only grant access to particular postgres users, or sets of users
-in specific schemas. In that case something like this might be preferred:
+You may prefer a more restricted model whereby you only grant access to
+particular postgres users, or sets of users in specific schemas. In that case
+something like this might be preferred:
 
   ```
   --- using a particular db schema...
@@ -162,5 +167,3 @@ in specific schemas. In that case something like this might be preferred:
   GRANT SELECT ON TABLE raster_overviews TO <your_user>
   ```
 
-A future version of the postgis-release would automate some of these steps. For now we leave this as a choice for
-the operator.
