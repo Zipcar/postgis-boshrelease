@@ -2,7 +2,7 @@
 
 #export PIDNUM=$$
 
-#job_dir=/var/vcap/jobs/postgis
+job_dir=/var/vcap/jobs/postgis
 
 mkdir -p /var/vcap/sys/log/postgis
 exec > >(tee -a >(logger -p user.info -t vcap.$(basename $0).stdout) | awk -W interactive '{ system("echo -n [$(date +\"%Y-%m-%d %H:%M:%S%z\")] $PIDNUM"); print " " $0 }' >> /var/vcap/sys/log/postgis/pre-start.stdout.log)
@@ -15,10 +15,10 @@ exec 2> >(tee -a >(logger -p user.error -t vcap.$(basename $0).stderr) | awk -W 
 #cp -r ${postgis_source_folder}/* ${postgres_target_folder}
 # remove the postgis/${postgres_version} folder here
 
-#source_envrc_file=". ${job_dir}/envrc"
+source_envrc_file=". ${job_dir}/envrc"
 
-#for pgconfig_file in /var/vcap/jobs/postgres/bin/pgconfig.sh; do
- # if ! grep -q "^${source_envrc_file}\$" ${pgconfig_file} >/dev/null 2>&1; then
- #   echo "${source_envrc_file}" >> ${pgconfig_file}
-  #fi
-#done
+pgconfig_file=/var/vcap/jobs/postgres/bin/pgconfig.sh
+
+if ! grep -q "^${source_envrc_file}\$" ${pgconfig_file} >/dev/null 2>&1; then
+  echo "${source_envrc_file}" >> ${pgconfig_file}
+fi
