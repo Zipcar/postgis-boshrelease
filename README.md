@@ -1,5 +1,4 @@
 # postgis-boshrelease
----
 
 ## Contents
 
@@ -11,8 +10,8 @@
 
 ## Summary
 
-This is a [BOSH](https://www.bosh.io) release for [PostGis](https://postgis.net), which builds on top of the 
-[Postgres release](https://github.com/cloudfoundry/postgres-release).
+This is a [BOSH](https://www.bosh.io) release for [PostGIS](https://postgis.net), which builds on top of the 
+[postgres release](https://github.com/cloudfoundry/postgres-release).
 
 It provides a set of modules and extensions that are loaded into postgres at runtime, and thereby make various
 spatial functions available to postgres users.
@@ -107,13 +106,13 @@ behaviour of postgres itself.
 
 ## Considerations after a successful deployment
 
-A number of new database tables and extemsopms are available after a successful
+A number of new database tables and extensions are available after a successful
 deployment. To access those you should execute the following queries as a db
 user with sufficient permissions (eg `postgres` or `vcap`).
 
 In a future version of this bosh release these steps could be included as
 deployment configuration options. For the time being these are left as
-operator tasks.
+tasks for the operator.
 
 ### Creating new extensions
 
@@ -124,13 +123,13 @@ need to be executed by a db user with sufficient permissions (e.g.
 `postgres` or `vcap`):
 
   ```
-  CREATE EXTENSION IF NOT EXISTS postgis
-  CREATE EXTENSION IF NOT EXISTS postgis_topology
-  CREATE EXTENSION IF NOT EXISTS postgis_sfcgal
-  CREATE EXTENSION IF NOT EXISTS fuzzystrmatch
-  CREATE EXTENSION IF NOT EXISTS address_standardizer
-  CREATE EXTENSION IF NOT EXISTS address_standardizer_data_us
-  CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder
+  CREATE EXTENSION IF NOT EXISTS postgis;
+  CREATE EXTENSION IF NOT EXISTS postgis_topology;
+  CREATE EXTENSION IF NOT EXISTS postgis_sfcgal;
+  CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;
+  CREATE EXTENSION IF NOT EXISTS address_standardizer;
+  CREATE EXTENSION IF NOT EXISTS address_standardizer_data_us;
+  CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder;
 
   ```
 
@@ -149,10 +148,10 @@ also grants access to several other tables that your users probably need).
 Allowing all users in your database to read the spatial tables:
 
   ```
-  GRANT SELECT ON TABLE public.geometry_columns TO PUBLIC
-  GRANT SELECT ON TABLE public.spatial_ref_sys TO PUBLIC
-  GRANT SELECT ON TABLE public.raster_columns TO PUBLIC
-  GRANT SELECT ON TABLE public.raster_overviews TO PUBLIC
+  GRANT SELECT ON TABLE public.geometry_columns TO PUBLIC;
+  GRANT SELECT ON TABLE public.spatial_ref_sys TO PUBLIC;
+  GRANT SELECT ON TABLE public.raster_columns TO PUBLIC;
+  GRANT SELECT ON TABLE public.raster_overviews TO PUBLIC;
   ```
 
 You may prefer a more restricted model whereby you only grant access to
@@ -160,10 +159,10 @@ particular postgres users, or sets of users in specific schemas. In that case
 something like this might be preferred:
 
   ```
-  --- using a particular db schema...
-  GRANT SELECT ON TABLE geometry_columns TO <your_user>
-  GRANT SELECT ON TABLE spatial_ref_sys TO <your_user>
-  GRANT SELECT ON TABLE raster_columns TO <your_user>
-  GRANT SELECT ON TABLE raster_overviews TO <your_user>
+  -- using a particular db schema...
+  GRANT SELECT ON TABLE geometry_columns TO <your_user>;
+  GRANT SELECT ON TABLE spatial_ref_sys TO <your_user>;
+  GRANT SELECT ON TABLE raster_columns TO <your_user>;
+  GRANT SELECT ON TABLE raster_overviews TO <your_user>;
   ```
 
