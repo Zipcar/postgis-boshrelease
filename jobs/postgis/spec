@@ -9,8 +9,14 @@ templates:
 
 packages:
   - postgis
-  - pcre
+  - gdal
   - geos
+  - jsonc
+  - libxml2
   - proj
   - sfcgal
-  - gdal
+  - cgal
+  - boost
+  - mpfr  
+  - gmp
+  - pcre
