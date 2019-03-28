@@ -1,0 +1,4 @@
+---
+name: pcre
+files:
+  - postgis/pcre-8.42.tar.gz

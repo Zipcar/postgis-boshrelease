@@ -1,0 +1,4 @@
+---
+name: gmp
+files:
+  - gmp/gmp-6.1.2.tar.bz2

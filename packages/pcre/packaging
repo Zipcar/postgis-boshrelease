@@ -1,0 +1,17 @@
+set -e -x
+
+echo "pcre Installation"
+
+echo "Extracting..."
+tar xvf postgis/pcre-8.42.tar.gz
+
+echo "Building..."
+pushd pcre-* > /dev/null
+
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make
+make install
+
+popd > /dev/null
+
+echo "Complete"

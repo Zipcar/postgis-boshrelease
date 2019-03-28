@@ -1,0 +1,13 @@
+#!/bin/bash -exu
+
+set -e -x
+echo "Postgis"
+
+for postgres_source_folder in $(find /var/vcap/packages/postgre* -name postgres-\*\.\*); do
+    postgis_target_folder=$(echo ${postgres_source_folder} | sed 's/packages/packages\/postgis/')
+    mkdir -p $postgis_target_folder
+
+    cp -r ${postgres_source_folder}/* ${postgis_target_folder}
+done
+
+echo "Complete"

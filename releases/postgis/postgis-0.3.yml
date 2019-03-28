@@ -1,0 +1,150 @@
+name: postgis
+version: "0.3"
+commit_hash: c024026
+uncommitted_changes: false
+jobs:
+- name: postgis
+  version: 33c875197ac9cea307623bc2285c4735ff67c9ff
+  fingerprint: 33c875197ac9cea307623bc2285c4735ff67c9ff
+  sha1: 8cde08e33c804e7930090ee0f324234cc33f1c31
+packages:
+- name: boost
+  version: 0204489f73dd9f538db2dda674b6673e845a3ee9
+  fingerprint: 0204489f73dd9f538db2dda674b6673e845a3ee9
+  sha1: 5434647c363fac8e23fca038d6cf7672cc0b1bb7
+  dependencies: []
+- name: cgal
+  version: 53199479568effe71eed858f5e16289849c6d4dd
+  fingerprint: 53199479568effe71eed858f5e16289849c6d4dd
+  sha1: 84b8f07d995ee4dd170eb46282008b2ee2777ed1
+  dependencies:
+  - boost
+  - mpfr
+  - gmp
+- name: gdal
+  version: 5c098d8f5b141bd4fcc5559a0da2a819bc692b1f
+  fingerprint: 5c098d8f5b141bd4fcc5559a0da2a819bc692b1f
+  sha1: f2b55da8c0918d5efc5e9b67c7e7cd6ccaafce69
+  dependencies: []
+- name: geos
+  version: 9dbd067727bd33738a726f5bb1e56e823c7b1dff
+  fingerprint: 9dbd067727bd33738a726f5bb1e56e823c7b1dff
+  sha1: f219aab96d53fb9d1df5dd6a1aa08c94a49f9d28
+  dependencies: []
+- name: gmp
+  version: 7ae8a87e5cee19d3554c66f708a8825613d1db9a
+  fingerprint: 7ae8a87e5cee19d3554c66f708a8825613d1db9a
+  sha1: ad0518d384f0ddf0ea6d8e6d10847f2a8cf81e21
+  dependencies: []
+- name: jsonc
+  version: 41509aac8f3d950f02d610503b616d167b0ce0eb
+  fingerprint: 41509aac8f3d950f02d610503b616d167b0ce0eb
+  sha1: 7b0794fff7f1374f7eef08d3a51ad6a6c0a3ec66
+  dependencies: []
+- name: libxml2
+  version: 561c5c67dc79ffbdd4cd38f232768d75ca91d945
+  fingerprint: 561c5c67dc79ffbdd4cd38f232768d75ca91d945
+  sha1: b30c780266a4a4e1430071a56f016c6364d8176e
+  dependencies: []
+- name: mpfr
+  version: 901a620cb11148fee5fbfd18f7c4a9f545fdb688
+  fingerprint: 901a620cb11148fee5fbfd18f7c4a9f545fdb688
+  sha1: f8fe68855804ed50a92dd0a6063c62a3c2146c02
+  dependencies:
+  - gmp
+- name: pcre
+  version: 953c0e4eebcd87037301635b02ee0cff30b0d07a
+  fingerprint: 953c0e4eebcd87037301635b02ee0cff30b0d07a
+  sha1: 342b559c7628d980a4cf187af93f49b0348ff223
+  dependencies: []
+- name: postgis
+  version: ced4d430aa1d7fa3dbcff47ce2be2743a4325779
+  fingerprint: ced4d430aa1d7fa3dbcff47ce2be2743a4325779
+  sha1: fc09bedea245cd5ccea2350674cce920c6947323
+  dependencies:
+  - postgres-9.6.10
+  - postgres-10.7
+  - postgres-11.1
+  - postgres-11.2
+- name: postgres-10.7
+  version: 16b4ab6bf279051a13be11523b904fc4ea07cb83
+  fingerprint: 16b4ab6bf279051a13be11523b904fc4ea07cb83
+  sha1: 6d75d16d9c43a6ab09e4d5ccfb7c2db2f5f03374
+  dependencies:
+  - gdal
+  - geos
+  - jsonc
+  - libxml2
+  - proj
+  - sfcgal
+  - cgal
+  - boost
+  - mpfr
+  - gmp
+  - pcre
+- name: postgres-11.1
+  version: 383f84a53f71767e23a1a44ce88894d982cad71c
+  fingerprint: 383f84a53f71767e23a1a44ce88894d982cad71c
+  sha1: 312bd4a0a69ef98d1a4be1fbd0a4fc8bc09274b8
+  dependencies:
+  - gdal
+  - geos
+  - jsonc
+  - libxml2
+  - proj
+  - sfcgal
+  - cgal
+  - boost
+  - mpfr
+  - gmp
+  - pcre
+- name: postgres-11.2
+  version: 72f57a09e26ff10e43fefa61d5cc54ac72085657
+  fingerprint: 72f57a09e26ff10e43fefa61d5cc54ac72085657
+  sha1: 53db86a0c58cd4e4a87ec345064745a6ac1c9088
+  dependencies:
+  - gdal
+  - geos
+  - jsonc
+  - libxml2
+  - proj
+  - sfcgal
+  - cgal
+  - boost
+  - mpfr
+  - gmp
+  - pcre
+- name: postgres-9.6.10
+  version: 5093f025b49dc7787735db88bb544e94f7913024
+  fingerprint: 5093f025b49dc7787735db88bb544e94f7913024
+  sha1: 1d7110569433d968632011e37359ebf8980ff372
+  dependencies:
+  - gdal
+  - geos
+  - jsonc
+  - libxml2
+  - proj
+  - sfcgal
+  - cgal
+  - boost
+  - mpfr
+  - gmp
+  - pcre
+- name: proj
+  version: cabde10a5d055e499a6b16a3e6d755775d5a9ca4
+  fingerprint: cabde10a5d055e499a6b16a3e6d755775d5a9ca4
+  sha1: dc00e73a829360d3b45f0d2ece4527404f7aa91b
+  dependencies: []
+- name: sfcgal
+  version: cab62cd989976df9ff4fb44ab08a199ef5325ee4
+  fingerprint: cab62cd989976df9ff4fb44ab08a199ef5325ee4
+  sha1: 29dafb4e7c548edf22430b587a7c1544ac79d00c
+  dependencies:
+  - cgal
+  - boost
+  - mpfr
+  - gmp
+license:
+  version: 34c12bba98086a20fefc04d12202d43de3aab54e
+  fingerprint: 34c12bba98086a20fefc04d12202d43de3aab54e
+  sha1: bcc1725bf358396d32f7ea11eb975e23212ce18e

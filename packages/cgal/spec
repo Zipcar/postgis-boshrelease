@@ -1,0 +1,8 @@
+---
+name: cgal
+files:
+  - cgal/cgal-releases-CGAL-4.13.tar.gz
+dependencies:
+  - boost
+  - mpfr  
+  - gmp

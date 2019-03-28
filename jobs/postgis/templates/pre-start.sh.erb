@@ -1,0 +1,16 @@
+#!/bin/bash -eu
+
+# this script ultimately sets the LD_LIBRARY_PATH with the requisite libs required to kick postgres
+job_dir=/var/vcap/jobs/postgis
+
+mkdir -p /var/vcap/sys/log/postgis
+exec > >(tee -a >(logger -p user.info -t vcap.$(basename $0).stdout) | awk -W interactive '{ system("echo -n [$(date +\"%Y-%m-%d %H:%M:%S%z\")] $PIDNUM"); print " " $0 }' >> /var/vcap/sys/log/postgis/pre-start.stdout.log)
+exec 2> >(tee -a >(logger -p user.error -t vcap.$(basename $0).stderr) | awk -W interactive '{ system("echo -n [$(date +\"%Y-%m-%d %H:%M:%S%z\")] $PIDNUM"); print " " $0 }' >> /var/vcap/sys/log/postgis/pre-start.stderr.log)
+
+source_envrc_file=". ${job_dir}/envrc"
+
+pgconfig_file=/var/vcap/jobs/postgres/bin/pgconfig.sh
+
+if ! grep -q "^${source_envrc_file}\$" ${pgconfig_file} >/dev/null 2>&1; then
+  echo "${source_envrc_file}" >> ${pgconfig_file}
+fi

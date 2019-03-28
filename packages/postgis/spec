@@ -1,0 +1,7 @@
+---
+name: postgis
+dependencies:
+  - postgres-9.6.10
+  - postgres-10.7
+  - postgres-11.1
+  - postgres-11.2

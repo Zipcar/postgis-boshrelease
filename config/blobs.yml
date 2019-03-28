@@ -1,0 +1,55 @@
+boost/boost_1_67_0.tar.gz:
+  size: 103363944
+  sha: 77e73c9fd7bf85b14067767b9e8fdc39b49ee0f2
+cgal/cgal-releases-CGAL-4.13.tar.gz:
+  size: 131376953
+  sha: ca7a4634d926343b280f066417e5d58935340800
+gdal/gdal-2.4.0.tar.gz:
+  size: 14533664
+  sha: 3420ae8a9644ce652339ecbad18f9024279cd2ba
+geos/geos-3.7.1.tar.bz2:
+  size: 2055129
+  sha: c06a2e7620b9197c6b9ac456395f4ee4fed9cb86
+gmp/gmp-6.1.2.tar.bz2:
+  size: 2386766
+  sha: 366ded6a44cd108ba6b3f5b9a252eab3f3a95cdf
+jsonc/json-c-json-c-0.13.1-20180305.tar.gz:
+  size: 625036
+  sha: d4c667ab94e7051b1e78aa727f0d937caba971e9
+libxml2/libxml2-sources-2.9.9.tar.gz:
+  size: 4027602
+  sha: 2aef56a35d8f64d58dca8ffb23c93fa543c009f9
+mpfr/mpfr-4.0.2.tar.gz:
+  size: 2211910
+  sha: ade94aa28e181540763d6698c6c9fae795be8b75
+postgis/pcre-8.42.tar.gz:
+  size: 2081413
+  sha: ee505270446f4c4bf52ac1a371335fdbb14465cb
+postgis/postgis-2.5.2.tar.gz:
+  size: 16252761
+  sha: 550cfe3e5d5203af02d997728155ded767f741fc
+postgres/postgresql-9.6.10.tar.gz:
+  size: 26212016
+  object_id: 581f0bec-23b5-48a0-4cfc-b6bc36a023c6
+  sha: 10c705ade828c57710ae0f1ad5bf39217765207f
+postgres/postgresql-10.7.tar.gz:
+  size: 24749562
+  sha: 49e38f01aa7454212b5364638e1e579e4304ed2d
+postgres/postgresql-11.1.tar.gz:
+  size: 28078799
+  sha: 5f3e45d5ad5ec3372474eda83e6441ca885ab2cd
+postgres/postgresql-11.2.tar.gz:
+  size: 25779561
+  sha: c047df58bed5b00058d5eb6bde011beed102521d
+proj/proj-5.2.0.tar.gz:
+  size: 1398188
+  sha: 09cb68377e9901c0e1b817b58e820118ccb741e6
+proj/proj-datumgrid-1.8.zip:
+  size: 6601640
+  sha: 22e4b614b439c078e60a3e38a19fb1bf752ec552
+proj/sqlite-autoconf-3270200.tar.gz:
+  size: 2797531
+  sha: 5f5750e3f39b7b60394a2fb6ddb2371f848670e6
+sfcgal/SFCGAL-1.3.6.tar.gz:
+  size: 2472776
+  sha: d31baeeed468b52b436c9ccf6b3acb6354cd9855

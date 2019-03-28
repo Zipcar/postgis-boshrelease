@@ -1,0 +1,14 @@
+builds:
+  29b80a4d-c35b-4bba-7f8b-ca4d03d63442:
+    version: "0.4"
+  517d56ea-fe5e-4496-41b8-505b8e386ee2:
+    version: "0.7"
+  7d152802-61d8-4095-49eb-0897cbd3e2ac:
+    version: "0.1"
+  863a1e25-b164-4420-58f2-2f1e0b567416:
+    version: "0.5"
+  a52fdbf0-880f-439d-5955-70f3181ef175:
+    version: "0.6"
+  addb5bca-8214-4741-64ff-ff39f8b2288f:
+    version: "0.3"
+format-version: "2"

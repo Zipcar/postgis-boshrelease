@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# This file is based on one with the same name included in the toolbelt release
+
+pkg() {
+    package=$1
+    if test -z "${package}"; then
+        return 0
+    fi
+
+    root=/var/vcap/packages
+    if test ! -d "${root}/${package}"; then
+        echo >&2 "${package}: no such package"
+        return 1
+    fi
+
+    for dir in lib; do
+        if test -d "${root}/${package}/${dir}"; then
+            if test -z "${LD_LIBRARY_PATH}"; then
+                export LD_LIBRARY_PATH="${root}/${package}/${dir}"
+            else
+                export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${root}/${package}/${dir}"
+            fi
+        fi
+    done
+    return 0
+}
+ 
+pushd /var/vcap/packages >/dev/null
+# We only include a subset of libraries because including them all causes some collisions 
+# particularly with smaller inbuilt compilations like address_standardizer. 
+# Also, we only really need these few libraries in our path to get everything to play nice 
+# so did not want to include others unnecessarily
+for package in pcre geos proj sfcgal gdal; do
+    pkg "${package}"
+done
+popd >/dev/null

@@ -1,0 +1,16 @@
+set -e -x
+
+echo "mpfr Installation"
+
+echo "Extracting..."
+tar xvf mpfr/mpfr-4.0.2.tar.gz
+
+echo "Building..."
+pushd mpfr-* > /dev/null
+./configure --prefix=${BOSH_INSTALL_TARGET} --with-gmp=/var/vcap/packages/gmp
+make
+make install
+
+popd > /dev/null
+
+echo "Complete"

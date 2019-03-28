@@ -1,0 +1,8 @@
+#!/bin/bash -eu
+
+postgres_version=$(grep 'current_version="' /var/vcap/jobs/postgres/bin/pgconfig.sh | sed 's/"//g' | sed 's/current_version\=//')
+postgis_source_folder=/var/vcap/packages/postgis/postgres-${postgres_version}
+postgres_target_folder=/var/vcap/packages/postgres-${postgres_version}
+
+cp -r ${postgis_source_folder}/* ${postgres_target_folder}
+# remove the postgis/${postgres_version} folder here

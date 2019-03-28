@@ -1,0 +1,17 @@
+---
+name: postgres-9.6.10
+files:
+  - postgres/postgresql-9.6.10.tar.gz
+  - postgis/postgis-2.5.2.tar.gz
+dependencies:
+  - gdal
+  - geos
+  - jsonc
+  - libxml2
+  - proj
+  - sfcgal
+  - cgal
+  - boost
+  - mpfr  
+  - gmp
+  - pcre

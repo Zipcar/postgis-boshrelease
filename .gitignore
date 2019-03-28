@@ -1,0 +1,8 @@
+blobs/
+dev_releases/*
+.dev_builds/*
+config/private.yml
+.final_builds/jobs/**/*.tgz
+.final_builds/packages/**/*.tgz
+/releases/**/*.tgz
+/releases/*.tgz
