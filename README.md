@@ -71,26 +71,26 @@ release. You may have generated this using the `generate-deployment-manifest` sc
 
 1. Add the postgis-release to your deployment manifest
 
-In the `releases` block, add a reference to the `postgis-release`, as follows:
+    In the `releases` block, add a reference to the `postgis-release`, as follows:
 
-  ```
-  releases:
-  - name: postgis
-    version: latest
-  ```
-(be sure to leave the `postgres` release reference intact).
+    ```
+    releases:
+    - name: postgis
+        version: latest
+    ```
+    (be sure to leave the `postgres` release reference intact).
 
 1. Add the postgis add-on to your manifest
 
-The postgis job should be included as an `addon`. Place the following at the end of your deployment manifest:
+    The postgis job should be included as an `addon`. Place the following at the end of your deployment manifest:
 
-  ```
-  addons:  
-  - name: postgis
-    jobs:
+    ```
+    addons:  
     - name: postgis
-      release: postgis
-  ``` 
+        jobs:
+        - name: postgis
+        release: postgis
+    ``` 
    
 1. Deploy:
 
